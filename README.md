@@ -1,17 +1,26 @@
-# Talya Kazayof — Software Engineer
+# <PLACEHOLDER_NAME> ? Portfolio
 
-Personal portfolio website showcasing selected projects, case studies, and engineering experience.
+Production-grade software engineer portfolio built with React, Vite, and Tailwind CSS.
 
-The goal of this project is to present my work in a clear, professional, and high-quality manner, with an emphasis on:
-- Clean architecture
-- Practical problem-solving
-- Attention to detail
-- Thoughtful user experience
+## Stack
+- React 18 + Vite
+- Tailwind CSS
+- Framer Motion
+- React Router
+- Lucide React
 
-The website includes:
-- Selected projects with live demos
-- In-depth case studies (architecture, decisions, tradeoffs)
-- Professional experience and skills
-- Dark / Light mode support
+## Getting Started
+npm install
+npm run dev
 
-> This repository contains the source code for the portfolio website.
+## Build
+npm run build
+
+## Deploy
+Ready for Vercel. Push to GitHub and import.
+
+## Structure
+All content lives in src/data/portfolioData.js. Update this file to customize.
+
+## License
+MIT
