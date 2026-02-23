@@ -75,6 +75,59 @@ export const content = {
       forks: "Forks",
       language: "Language",
     },
+    contact: {
+      label: "Contact",
+      title: "Let’s work together",
+      subtitle:
+        "Share a quick overview and I’ll respond with timelines, availability, and next steps.",
+      fields: {
+        name: "Name",
+        email: "Email",
+        message: "Message",
+      },
+      placeholders: {
+        name: "Your name",
+        email: "you@example.com",
+        message: "Tell me about the role, project, or collaboration.",
+      },
+      recruiter: {
+        title: "Recruiter mode",
+        subtitle: "Unlock a few extra hiring details.",
+        toggle: "Toggle recruiter fields",
+        fields: {
+          company: "Company",
+          role: "Role",
+          timeline: "Hiring timeline",
+        },
+        placeholders: {
+          company: "Company name",
+          role: "Role title",
+          timeline: "e.g. 2-4 weeks",
+        },
+      },
+      actions: {
+        send: "Send message",
+        email: "Email directly",
+      },
+      note: "Form is a UI demo for now. Use email to reach me.",
+      cards: {
+        availability: {
+          label: "Availability",
+          title: "Open to new opportunities",
+          body: "Interested in roles focused on cloud platforms, automation, and product delivery.",
+        },
+        focus: {
+          label: "Focus",
+          title: "Cloud, data, and full-stack",
+          body: "GCP, serverless automation, data pipelines, and modern React-based interfaces.",
+        },
+        response: {
+          label: "Response time",
+          title: "Fast replies",
+          body: "I usually respond within 1–2 business days.",
+        },
+      },
+    },
     projects: [
       {
         id: "gcp-data-infrastructure",
@@ -320,6 +373,58 @@ export const content = {
       stars: "כוכבים",
       forks: "Forks",
       language: "שפה",
+    },
+    contact: {
+      label: "יצירת קשר",
+      title: "בואו נעבוד יחד",
+      subtitle: "שלחי תקציר קצר ואחזור אליך עם זמינות והמשך תהליך.",
+      fields: {
+        name: "שם",
+        email: "אימייל",
+        message: "הודעה",
+      },
+      placeholders: {
+        name: "השם שלך",
+        email: "you@example.com",
+        message: "ספרי לי על התפקיד, הפרויקט או שיתוף הפעולה.",
+      },
+      recruiter: {
+        title: "מצב מגייסות",
+        subtitle: "פתיחת שדות גיוס נוספים.",
+        toggle: "מתג שדות מגייסות",
+        fields: {
+          company: "חברה",
+          role: "תפקיד",
+          timeline: "לו״ז גיוס",
+        },
+        placeholders: {
+          company: "שם החברה",
+          role: "שם התפקיד",
+          timeline: "לדוגמה: 2-4 שבועות",
+        },
+      },
+      actions: {
+        send: "שליחת הודעה",
+        email: "שליחה במייל",
+      },
+      note: "הטופס לדוגמה בלבד. לפנייה אמיתית השתמשי במייל.",
+      cards: {
+        availability: {
+          label: "זמינות",
+          title: "פתוחה להצעות חדשות",
+          body: "מתעניינת בתפקידי ענן, אוטומציה ופיתוח מוצרי דאטה.",
+        },
+        focus: {
+          label: "פוקוס",
+          title: "ענן, דאטה ופול-סטאק",
+          body: "GCP, Serverless, צינורות נתונים וממשקי React מודרניים.",
+        },
+        response: {
+          label: "זמן תגובה",
+          title: "מענה מהיר",
+          body: "בדרך כלל חוזרת בתוך 1–2 ימי עסקים.",
+        },
+      },
     },
     projects: [
       {
