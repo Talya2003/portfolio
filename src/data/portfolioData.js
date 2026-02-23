@@ -63,6 +63,18 @@ export const content = {
       body: "The page you are looking for does not exist.",
       back: "Back to home",
     },
+    github: {
+      label: "Open Source Activity",
+      title: "GitHub Repositories",
+      cta: "View all on GitHub",
+      loading: "Loading repositories...",
+      error: "Unable to load repositories right now.",
+      noDescription: "No description provided.",
+      updated: "Updated",
+      stars: "Stars",
+      forks: "Forks",
+      language: "Language",
+    },
     projects: [
       {
         id: "gcp-data-infrastructure",
@@ -296,6 +308,18 @@ export const content = {
       title: "404",
       body: "העמוד המבוקש לא קיים.",
       back: "חזרה לדף הבית",
+    },
+    github: {
+      label: "פעילות קוד פתוח",
+      title: "פרויקטי GitHub",
+      cta: "לכל הפרויקטים ב-GitHub",
+      loading: "טוענת ריפוזיטוריז...",
+      error: "לא ניתן לטעון את הריפוזיטוריז כרגע.",
+      noDescription: "אין תיאור לפרויקט.",
+      updated: "עודכן",
+      stars: "כוכבים",
+      forks: "Forks",
+      language: "שפה",
     },
     projects: [
       {
