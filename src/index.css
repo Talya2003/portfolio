@@ -55,3 +55,99 @@
     font-family: 'JetBrains Mono', monospace;
   }
 }
+
+.app-shell {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.animated-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.animated-bg__base,
+.animated-bg__traces,
+.animated-bg__nodes,
+.animated-bg__pulse,
+.animated-bg__mist {
+  position: absolute;
+  inset: 0;
+}
+
+.animated-bg__base {
+  background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.06), transparent 55%),
+    radial-gradient(circle at 80% 15%, rgba(255, 255, 255, 0.04), transparent 45%),
+    linear-gradient(180deg, rgba(6, 8, 12, 0.98), rgba(4, 5, 7, 0.98));
+}
+
+.animated-bg__traces {
+  background-image:
+    linear-gradient(90deg, rgba(160, 235, 255, 0.28) 1px, transparent 1px),
+    linear-gradient(rgba(160, 235, 255, 0.28) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(140, 220, 255, 0.18) 1px, transparent 1px),
+    linear-gradient(rgba(140, 220, 255, 0.18) 1px, transparent 1px);
+  background-size: 220px 220px, 220px 220px, 90px 90px, 90px 90px;
+  background-position: 0 0, 0 0, 30px 60px, 30px 60px;
+  opacity: 0.55;
+  animation: traceDrift 12s linear infinite;
+  mask-image: radial-gradient(circle at center, black 55%, transparent 85%);
+}
+
+.animated-bg__nodes {
+  background-image:
+    radial-gradient(circle at 12% 28%, rgba(190, 245, 255, 0.65) 0 2px, transparent 3px),
+    radial-gradient(circle at 24% 42%, rgba(170, 235, 255, 0.55) 0 2px, transparent 3px),
+    radial-gradient(circle at 38% 20%, rgba(160, 225, 255, 0.5) 0 2px, transparent 3px),
+    radial-gradient(circle at 62% 30%, rgba(200, 250, 255, 0.55) 0 2px, transparent 3px),
+    radial-gradient(circle at 76% 46%, rgba(170, 235, 255, 0.5) 0 2px, transparent 3px),
+    radial-gradient(circle at 86% 22%, rgba(190, 245, 255, 0.55) 0 2px, transparent 3px),
+    radial-gradient(circle at 18% 72%, rgba(180, 240, 255, 0.6) 0 2px, transparent 3px),
+    radial-gradient(circle at 72% 70%, rgba(200, 250, 255, 0.6) 0 2px, transparent 3px);
+  opacity: 0.65;
+  animation: nodePulse 8s ease-in-out infinite;
+}
+
+.animated-bg__pulse {
+  background: radial-gradient(circle at 50% 50%, rgba(200, 250, 255, 0.2), transparent 50%);
+  filter: blur(20px);
+  opacity: 0.5;
+  animation: pulseShift 10s ease-in-out infinite;
+}
+
+.animated-bg__mist {
+  background: linear-gradient(120deg, rgba(200, 250, 255, 0.12), transparent 55%);
+  mix-blend-mode: screen;
+  opacity: 0.4;
+  animation: mistFlow 14s ease-in-out infinite alternate;
+}
+
+@keyframes traceDrift {
+  0% { background-position: 0 0, 0 0, 30px 60px, 30px 60px; }
+  100% { background-position: 40px 20px, -30px 40px, 70px 100px, 70px 100px; }
+}
+
+@keyframes nodePulse {
+  0% { opacity: 0.45; }
+  50% { opacity: 0.75; }
+  100% { opacity: 0.55; }
+}
+
+@keyframes pulseShift {
+  0% { transform: translate(-2%, -2%) scale(0.95); opacity: 0.4; }
+  50% { transform: translate(2%, 1%) scale(1.05); opacity: 0.7; }
+  100% { transform: translate(-1%, 2%) scale(1); opacity: 0.5; }
+}
+
+@keyframes mistFlow {
+  0% { transform: translateX(-6%); }
+  100% { transform: translateX(6%); }
+}
+
+main, header, footer {
+  position: relative;
+  z-index: 1;
+}
