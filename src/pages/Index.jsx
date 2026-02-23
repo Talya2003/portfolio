@@ -7,6 +7,7 @@ import GitHubReposSection from "../components/GitHubReposSection";
 import PrinciplesSection from "../components/PrinciplesSection";
 import TechStackSection from "../components/TechStackSection";
 import ExperienceTimeline from "../components/ExperienceTimeline";
+import ContactSection from "../components/ContactSection";
 
 export default function Index() {
   return (
@@ -19,6 +20,7 @@ export default function Index() {
         <PrinciplesSection />
         <TechStackSection />
         <ExperienceTimeline />
+        <ContactSection />
       </main>
       <Footer />
     </div>
