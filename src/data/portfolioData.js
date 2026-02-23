@@ -107,9 +107,14 @@ export const content = {
       },
       actions: {
         send: "Send message",
+        sending: "Sending...",
         email: "Email directly",
       },
-      note: "Form is a UI demo for now. Use email to reach me.",
+      note: "Emails are delivered via EmailJS.",
+      feedback: {
+        success: "Message sent successfully. I will get back to you soon.",
+        error: "Something went wrong. Please try again or email me directly.",
+      },
       cards: {
         availability: {
           label: "Availability",
@@ -405,9 +410,14 @@ export const content = {
       },
       actions: {
         send: "שליחת הודעה",
+        sending: "שולחת...",
         email: "שליחה במייל",
       },
-      note: "הטופס לדוגמה בלבד. לפנייה אמיתית השתמשי במייל.",
+      note: "השליחה מתבצעת דרך EmailJS.",
+      feedback: {
+        success: "ההודעה נשלחה בהצלחה. אחזור אליך בהקדם.",
+        error: "משהו השתבש. נסי שוב או שלחי מייל ישירות.",
+      },
       cards: {
         availability: {
           label: "זמינות",
