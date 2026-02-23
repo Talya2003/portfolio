@@ -1,24 +1,28 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Container from "./layout/Container";
-import { principles } from "../data/portfolioData";
+import { content } from "../data/portfolioData";
 import { Sparkles } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function PrinciplesSection() {
+  const { lang } = useLanguage();
+  const labels = content[lang] || content.en;
+
   return (
     <section className="border-t border-border py-24 bg-secondary/30">
       <Container>
         <div className="mb-12">
           <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-muted-foreground">
             <Sparkles className="h-3.5 w-3.5" />
-            <span>How I Work</span>
+            <span>{labels.sections.howIWork}</span>
           </div>
           <h2 className="text-4xl font-bold text-foreground mt-3">
-            Engineering Principles
+            {labels.sections.principles}
           </h2>
         </div>
         <div className="grid gap-6 sm:grid-cols-2">
-          {principles.map((principle, index) => (
+          {labels.principles.map((principle, index) => (
             <motion.div
               key={principle.title}
               initial={{ opacity: 0, y: 20 }}
