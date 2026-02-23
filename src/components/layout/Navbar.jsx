@@ -1,21 +1,25 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { Moon, Sun, Menu, X } from "lucide-react";
+import { Moon, Sun, Menu, X, Languages } from "lucide-react";
 import Container from "./Container";
-import { siteConfig } from "../../data/portfolioData";
+import { siteConfig, content } from "../../data/portfolioData";
+import { useLanguage } from "../../context/LanguageContext";
 
 export default function Navbar() {
-  const [isDark, setIsDark] = useState(true);
-  const [isOpen, setIsOpen] = useState(false);
+  const { lang, setLang } = useLanguage();
+  const [isDark, setIsDark] = React.useState(true);
+  const [isOpen, setIsOpen] = React.useState(false);
 
-  const brand = useMemo(() => {
+  const brand = React.useMemo(() => {
     return siteConfig.name
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, ".")
       .replace(/^\.|\.$/g, "");
   }, []);
 
-  useEffect(() => {
+  const labels = content[lang] || content.en;
+
+  React.useEffect(() => {
     const stored = window.localStorage.getItem("theme");
     if (stored === "light") {
       setIsDark(false);
@@ -31,7 +35,7 @@ export default function Navbar() {
     document.documentElement.classList.toggle("dark", true);
   }, []);
 
-  useEffect(() => {
+  React.useEffect(() => {
     document.documentElement.classList.toggle("dark", isDark);
     window.localStorage.setItem("theme", isDark ? "dark" : "light");
   }, [isDark]);
@@ -47,21 +51,29 @@ export default function Navbar() {
         </Link>
         <div className="hidden md:flex items-center gap-6">
           <Link to="/#projects" className={navLinkClass}>
-            Work
+            {labels.nav.work}
           </Link>
           <Link to="/about" className={navLinkClass}>
-            About
+            {labels.nav.about}
           </Link>
           <Link to="/#contact" className={navLinkClass}>
-            Contact
+            {labels.nav.contact}
           </Link>
           {/* TODO: Resume download link placeholder */}
           <a
             href="#"
             className="font-mono text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors"
           >
-            Resume
+            {labels.nav.resume}
           </a>
+          <button
+            type="button"
+            onClick={() => setLang(lang === "he" ? "en" : "he")}
+            className="rounded-md p-2 text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
+            aria-label="Toggle language"
+          >
+            <Languages className="h-4 w-4" />
+          </button>
           <button
             type="button"
             onClick={() => setIsDark((prev) => !prev)}
@@ -84,17 +96,30 @@ export default function Navbar() {
         <div className="md:hidden border-b border-border/50 bg-background/95 backdrop-blur-md">
           <Container className="py-6 flex flex-col gap-4">
             <Link to="/#projects" className={navLinkClass} onClick={() => setIsOpen(false)}>
-              Work
+              {labels.nav.work}
             </Link>
             <Link to="/about" className={navLinkClass} onClick={() => setIsOpen(false)}>
-              About
+              {labels.nav.about}
             </Link>
             <Link to="/#contact" className={navLinkClass} onClick={() => setIsOpen(false)}>
-              Contact
+              {labels.nav.contact}
             </Link>
             <div className="flex items-center justify-between">
               <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-                Theme
+                {labels.nav.language}
+              </span>
+              <button
+                type="button"
+                onClick={() => setLang(lang === "he" ? "en" : "he")}
+                className="rounded-md p-2 text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
+                aria-label="Toggle language"
+              >
+                <Languages className="h-4 w-4" />
+              </button>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+                {labels.nav.theme}
               </span>
               <button
                 type="button"
