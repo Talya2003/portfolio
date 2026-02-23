@@ -1,13 +1,57 @@
 import React, { useState } from "react";
 import { Send, Building2, UserRound } from "lucide-react";
+import emailjs from "@emailjs/browser";
 import Container from "./layout/Container";
 import { content, siteConfig } from "../data/portfolioData";
 import { useLanguage } from "../context/LanguageContext";
+
+const EMAILJS_SERVICE_ID = "service_8htaosb";
+const EMAILJS_TEMPLATE_ID = "template_wvw7t4k";
+const EMAILJS_PUBLIC_KEY = "E_Pko4Wfj6hbbWKIW";
 
 export default function ContactSection() {
   const { lang } = useLanguage();
   const labels = content[lang] || content.en;
   const [isRecruiter, setIsRecruiter] = useState(false);
+  const [status, setStatus] = useState("idle");
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    message: "",
+    company: "",
+    role: "",
+    timeline: "",
+  });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (status === "sending") return;
+    setStatus("sending");
+
+    const payload = {
+      name: form.name,
+      email: form.email,
+      message: form.message,
+      recruiter_mode: isRecruiter ? "Yes" : "No",
+      company: isRecruiter ? form.company : "-",
+      role: isRecruiter ? form.role : "-",
+      timeline: isRecruiter ? form.timeline : "-",
+      source: window.location.href,
+    };
+
+    try {
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, payload, EMAILJS_PUBLIC_KEY);
+      setStatus("success");
+      setForm({ name: "", email: "", message: "", company: "", role: "", timeline: "" });
+    } catch (error) {
+      setStatus("error");
+    }
+  };
 
   return (
     <section id="contact" className="border-t border-border py-24">
@@ -25,7 +69,10 @@ export default function ContactSection() {
         </div>
 
         <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-          <form className="rounded-lg border border-border bg-card p-6 sm:p-8 space-y-6">
+          <form
+            onSubmit={handleSubmit}
+            className="rounded-lg border border-border bg-card p-6 sm:p-8 space-y-6"
+          >
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="space-y-2">
                 <label className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
@@ -33,8 +80,12 @@ export default function ContactSection() {
                 </label>
                 <input
                   type="text"
+                  name="name"
+                  value={form.name}
+                  onChange={handleChange}
                   placeholder={labels.contact.placeholders.name}
                   className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground"
+                  required
                 />
               </div>
               <div className="space-y-2">
@@ -43,8 +94,12 @@ export default function ContactSection() {
                 </label>
                 <input
                   type="email"
+                  name="email"
+                  value={form.email}
+                  onChange={handleChange}
                   placeholder={labels.contact.placeholders.email}
                   className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground"
+                  required
                 />
               </div>
             </div>
@@ -55,8 +110,12 @@ export default function ContactSection() {
               </label>
               <textarea
                 rows="4"
+                name="message"
+                value={form.message}
+                onChange={handleChange}
                 placeholder={labels.contact.placeholders.message}
                 className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground"
+                required
               />
             </div>
 
@@ -97,6 +156,9 @@ export default function ContactSection() {
                   </label>
                   <input
                     type="text"
+                    name="company"
+                    value={form.company}
+                    onChange={handleChange}
                     placeholder={labels.contact.recruiter.placeholders.company}
                     className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground"
                   />
@@ -107,6 +169,9 @@ export default function ContactSection() {
                   </label>
                   <input
                     type="text"
+                    name="role"
+                    value={form.role}
+                    onChange={handleChange}
                     placeholder={labels.contact.recruiter.placeholders.role}
                     className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground"
                   />
@@ -117,6 +182,9 @@ export default function ContactSection() {
                   </label>
                   <input
                     type="text"
+                    name="timeline"
+                    value={form.timeline}
+                    onChange={handleChange}
                     placeholder={labels.contact.recruiter.placeholders.timeline}
                     className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground"
                   />
@@ -126,10 +194,10 @@ export default function ContactSection() {
 
             <div className="flex flex-wrap items-center gap-4">
               <button
-                type="button"
+                type="submit"
                 className="inline-flex items-center gap-2 rounded-md bg-foreground px-5 py-2.5 font-mono text-sm font-medium text-background hover:opacity-80 transition-opacity"
               >
-                {labels.contact.actions.send}
+                {status === "sending" ? labels.contact.actions.sending : labels.contact.actions.send}
                 <Send className="h-3.5 w-3.5" />
               </button>
               <a
@@ -143,6 +211,13 @@ export default function ContactSection() {
                 {labels.contact.note}
               </p>
             </div>
+
+            {status === "success" && (
+              <p className="text-sm text-foreground">{labels.contact.feedback.success}</p>
+            )}
+            {status === "error" && (
+              <p className="text-sm text-muted-foreground">{labels.contact.feedback.error}</p>
+            )}
           </form>
 
           <div className="rounded-lg border border-border bg-card p-6 sm:p-8 space-y-6">
