@@ -1,21 +1,27 @@
 import React from "react";
 import Container from "./layout/Container";
-import { techStack } from "../data/portfolioData";
+import { content } from "../data/portfolioData";
 import { Cpu } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function TechStackSection() {
+  const { lang } = useLanguage();
+  const labels = content[lang] || content.en;
+
   return (
     <section className="border-t border-border py-24">
       <Container>
         <div className="mb-12">
           <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-muted-foreground">
             <Cpu className="h-3.5 w-3.5" />
-            <span>Tools & Technologies</span>
+            <span>{labels.sections.tools}</span>
           </div>
-          <h2 className="text-4xl font-bold text-foreground mt-3">Tech Stack</h2>
+          <h2 className="text-4xl font-bold text-foreground mt-3">
+            {labels.sections.techStack}
+          </h2>
         </div>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {techStack.map((stack) => (
+          {labels.techStack.map((stack) => (
             <div key={stack.category}>
               <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-4">
                 {stack.category}
