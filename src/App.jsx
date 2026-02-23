@@ -4,6 +4,7 @@ import Index from "./pages/Index";
 import AboutPage from "./pages/AboutPage";
 import CaseStudyPage from "./pages/CaseStudyPage";
 import NotFound from "./pages/NotFound";
+import { LanguageProvider } from "./context/LanguageContext";
 
 function ScrollToHash() {
   const location = useLocation();
@@ -27,15 +28,17 @@ function ScrollToHash() {
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <ScrollToHash />
-      {/* TODO: Optional page transitions can be added here. */}
-      <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/project/:id" element={<CaseStudyPage />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
+    <LanguageProvider>
+      <BrowserRouter>
+        <ScrollToHash />
+        {/* TODO: Optional page transitions can be added here. */}
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/project/:id" element={<CaseStudyPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </LanguageProvider>
   );
 }
