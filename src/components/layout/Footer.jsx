@@ -1,9 +1,13 @@
 import React from "react";
 import { Github, Linkedin, Mail, MapPin } from "lucide-react";
 import Container from "./Container";
-import { siteConfig } from "../../data/portfolioData";
+import { siteConfig, content } from "../../data/portfolioData";
+import { useLanguage } from "../../context/LanguageContext";
 
 export default function Footer() {
+  const { lang } = useLanguage();
+  const labels = content[lang] || content.en;
+
   return (
     <footer id="contact" className="border-t border-border bg-background py-16">
       <Container>
@@ -11,11 +15,11 @@ export default function Footer() {
           <div className="space-y-4">
             <p className="font-mono text-sm font-semibold">{siteConfig.name}</p>
             <p className="text-base text-muted-foreground max-w-sm">
-              {siteConfig.subheadline}
+              {labels.subheadline}
             </p>
             <div className="flex items-center gap-2 text-base text-muted-foreground">
               <MapPin className="h-3.5 w-3.5" />
-              <span>{siteConfig.location}</span>
+              <span>{labels.location}</span>
             </div>
           </div>
           <div className="flex items-center gap-4">
