@@ -1,175 +1,477 @@
-export const siteConfig = {
-  name: "PLACEHOLDER_NAME",
-  title: "PLACEHOLDER_TITLE",
-  location: "PLACEHOLDER_LOCATION",
-  email: "PLACEHOLDER_EMAIL",
-  github: "PLACEHOLDER_GITHUB_URL",
-  linkedin: "PLACEHOLDER_LINKEDIN_URL",
-  headline: "PLACEHOLDER_HEADLINE",
-  subheadline: "PLACEHOLDER_SUBHEADLINE",
+﻿export const siteConfig = {
+  name: "Talya Kazayof",
+  email: "talya8399@gmail.com",
+  github: "https://github.com/Talya2003",
+  linkedin: "https://www.linkedin.com/in/talya-kazayof",
 };
 
-export const projects = [
-  {
-    id: "edge-observability-platform",
-    title: "Edge Observability Platform",
-    subtitle: "Unified telemetry pipeline",
-    description: "Cut mean-time-to-detection by 42% with a real-time, multi-tenant observability layer.",
-    overview:
-      "Built a centralized platform that ingests logs, metrics, and traces from edge services and standardizes them into a single queryable view for SRE teams.",
-    problem:
-      "Teams had fragmented tooling across regions, causing inconsistent alerting and slow incident response when traffic spiked.",
-    architecture:
-      "Event-driven ingestion with a Kafka backbone, OpenTelemetry collectors at the edge, and a query service backed by columnar storage.",
-    implementation:
-      "Delivered schema governance, tenant isolation, and automated dashboards while integrating with existing on-call workflows.",
-    challenges:
-      "Balancing latency requirements with cost constraints across multiple regions while migrating legacy log shippers.",
-    results:
-      "Reduced alert noise by 35%, improved query performance by 2.3x, and standardized KPIs across five product lines.",
-    techStack: ["React", "Node", "GCP", "PostgreSQL"],
-    category: "INFRASTRUCTURE",
-    metrics: [
-      { label: "MTTD", value: "-42%" },
-      { label: "Alert Noise", value: "-35%" },
-      { label: "Query Speed", value: "2.3x" },
-      { label: "Regions", value: "6" },
+export const content = {
+  en: {
+    title: "Software Engineer",
+    location: "Israel",
+    headline: "Software Engineer focused on cloud infrastructure, automation, and full-stack delivery.",
+    subheadline:
+      "Building reliable data platforms and internal tools on GCP and SAP, while delivering research-driven web products with modern React and Python stacks.",
+    nav: {
+      work: "Work",
+      about: "About",
+      contact: "Contact",
+      resume: "Resume",
+      theme: "Theme",
+      language: "Language",
+    },
+    hero: {
+      primaryCta: "View work",
+      secondaryCta: "GitHub",
+      scroll: "scroll",
+    },
+    sections: {
+      selectedWork: "Selected Work",
+      projects: "Projects",
+      howIWork: "How I Work",
+      principles: "Engineering Principles",
+      tools: "Tools & Technologies",
+      techStack: "Tech Stack",
+      career: "Career",
+      experience: "Experience",
+      about: "About",
+    },
+    about: {
+      paragraphs: [
+        "I’m a software engineer specializing in cloud infrastructure, automation, and full-stack delivery for data-intensive systems.",
+        "At the Population and Immigration Authority, I lead GCP and SAP architecture work, build serverless automation, and develop internal web platforms that make data more accessible and reliable.",
+        "As a freelance developer, I ship research and community products using React, Django, and Firebase, with a focus on clean UX, secure access, and maintainable codebases.",
+      ],
+    },
+    caseStudy: {
+      back: "Back to projects",
+      notFoundTitle: "Project not found",
+      notFoundBody: "The case study you are looking for does not exist.",
+      overview: "Overview",
+      problem: "Problem",
+      architecture: "Architecture",
+      implementation: "Implementation",
+      challenges: "Challenges",
+      results: "Results",
+      role: "Role",
+      year: "Year",
+      duration: "Duration",
+      team: "Team",
+    },
+    notFound: {
+      title: "404",
+      body: "The page you are looking for does not exist.",
+      back: "Back to home",
+    },
+    projects: [
+      {
+        id: "gcp-data-infrastructure",
+        title: "GCP Data Infrastructure",
+        subtitle: "Cloud-native data platform design",
+        description:
+          "Designed a GCP-based data infrastructure with automated pipelines and serverless services for cross-team workflows.",
+        overview:
+          "Led R&D and architecture for a cloud data platform integrating GCP services with SAP, enabling reliable ingestion, processing, and governance.",
+        problem:
+          "Multiple teams needed consistent, automated data pipelines and controlled environments while maintaining data quality and auditability.",
+        architecture:
+          "Serverless-first architecture using Cloud Run and Cloud Functions, with Python orchestration and SAP HANA integration for structured datasets.",
+        implementation:
+          "Built automation around pipeline execution, environment management, and API-based integrations with Azure DevOps.",
+        challenges:
+          "Coordinating multiple stakeholders while ensuring security constraints and data quality requirements were met.",
+        results:
+          "Standardized data flows and reduced manual operational work with reusable automation workflows.",
+        techStack: ["Python", "GCP", "SAP HANA", "Cloud Run"],
+        category: "CLOUD PLATFORM",
+        metrics: [
+          { label: "Pipelines", value: "8+" },
+          { label: "Integrations", value: "4" },
+          { label: "Teams", value: "3" },
+          { label: "Environments", value: "3" },
+        ],
+        links: [{ label: "GitHub", url: "https://github.com" }],
+        year: "2024",
+        role: "Software Engineer",
+        duration: "Ongoing",
+        team: "Cross-functional",
+      },
+      {
+        id: "remez-research-platform",
+        title: "REMEZ Research Platform",
+        subtitle: "Drug–reaction analysis web app",
+        description:
+          "Built a research-driven platform for drug–reaction analysis with authentication, query management, and visualization.",
+        overview:
+          "Developed a full-stack web application for clinical research workflows, supporting secure access, persistent queries, and interpretable outputs.",
+        problem:
+          "Researchers needed a unified system for exploring drug–reaction data and managing queries without ad-hoc scripts.",
+        architecture:
+          "React front-end with Django and FastAPI services, backed by a structured data layer and role-based access.",
+        implementation:
+          "Delivered authentication, query orchestration, and visualization for reporting with a clean, fast UI.",
+        challenges:
+          "Balancing complex data queries with responsive UX while ensuring clarity for non-technical users.",
+        results:
+          "Enabled repeatable research workflows and improved collaboration across the team.",
+        techStack: ["React", "Django", "FastAPI", "PostgreSQL"],
+        category: "FULL-STACK",
+        metrics: [
+          { label: "Modules", value: "4" },
+          { label: "Auth", value: "RBAC" },
+          { label: "Queries", value: "10+" },
+          { label: "Visuals", value: "ROR" },
+        ],
+        links: [{ label: "GitHub", url: "https://github.com" }],
+        year: "2024",
+        role: "Freelance Developer",
+        duration: "Ongoing",
+        team: "Independent",
+      },
+      {
+        id: "internal-bi-portal",
+        title: "Internal BI Portal",
+        subtitle: "Organizational analytics hub",
+        description:
+          "Building an internal BI portal that centralizes reporting workflows and improves access to data insights.",
+        overview:
+          "Developing a web portal for internal stakeholders to view dashboards and request reports through a unified interface.",
+        problem:
+          "Analytics workflows were fragmented and required manual coordination across teams.",
+        architecture:
+          "React client with Node.js REST APIs, integrating with SAP HANA data sources and internal authentication.",
+        implementation:
+          "Designed reusable UI components, API contracts, and query modules to support reporting needs.",
+        challenges:
+          "Ensuring data consistency and performance while aligning with organizational security standards.",
+        results:
+          "Streamlined access to analytics and reduced turnaround time for internal reporting.",
+        techStack: ["React", "Node.js", "REST APIs", "SAP HANA"],
+        category: "DATA PLATFORM",
+        metrics: [
+          { label: "Dashboards", value: "6+" },
+          { label: "APIs", value: "5" },
+          { label: "Data Sets", value: "12" },
+          { label: "Stakeholders", value: "4" },
+        ],
+        links: [{ label: "GitHub", url: "https://github.com" }],
+        year: "2024",
+        role: "Software Engineer",
+        duration: "Ongoing",
+        team: "Internal",
+      },
     ],
-    links: [{ label: "GitHub", url: "https://github.com" }],
-    year: "2024",
-    role: "Staff Engineer",
-    duration: "8 months",
-    team: "7 engineers",
-  },
-  {
-    id: "finops-automation-suite",
-    title: "FinOps Automation Suite",
-    subtitle: "Cost governance at scale",
-    description: "Automated budgeting and anomaly detection that saved 18% in monthly cloud spend.",
-    overview:
-      "Designed a rules-driven platform to enforce cost policies, forecast usage, and surface real-time anomalies for finance and engineering.",
-    problem:
-      "Cloud spend was growing unpredictably, with limited attribution to teams and no consistent policy enforcement.",
-    architecture:
-      "Policy engine with scheduled evaluations, data warehouse ingestion, and a notification layer wired into Slack and email.",
-    implementation:
-      "Implemented tag enforcement, budget guardrails, and a forecasting model that aligned with quarterly planning cycles.",
-    challenges:
-      "Normalizing billing data from multiple providers while ensuring policy actions were safe and reversible.",
-    results:
-      "Achieved 18% cost reduction, 92% tag coverage, and eliminated blind spots for shared infrastructure.",
-    techStack: ["React", "Node", "GCP", "PostgreSQL"],
-    category: "PLATFORM",
-    metrics: [
-      { label: "Spend", value: "-18%" },
-      { label: "Tag Coverage", value: "92%" },
-      { label: "Forecast Accuracy", value: "+21%" },
-      { label: "Teams", value: "14" },
+    experiences: [
+      {
+        company: "Population and Immigration Authority",
+        role: "Software Engineer",
+        period: "2024 — Present",
+        description:
+          "Leading cloud data infrastructure initiatives on GCP and SAP, building automation, data pipelines, and internal web platforms.",
+        highlights: [
+          "Designed serverless architecture using Cloud Run and Cloud Functions.",
+          "Automated pipeline workflows and integrated Azure DevOps APIs.",
+          "Developed SQL on SAP HANA to improve data quality and performance.",
+        ],
+      },
+      {
+        company: "Freelance",
+        role: "Web Developer",
+        period: "2024 — Present",
+        description:
+          "Delivering full-stack web products for research and community organizations using React, Django, and Firebase.",
+        highlights: [
+          "Built REMEZ, a drug–reaction analysis platform with authentication and visualization.",
+          "Shipped a production site for a synagogue community with optimized performance.",
+          "Implemented REST APIs, data persistence, and role-based access.",
+        ],
+      },
+      {
+        company: "Lehava (Association for Kidney Health)",
+        role: "Director, Computer Department",
+        period: "2020 — Present",
+        description:
+          "Volunteering to manage and improve technology operations for a healthcare non-profit.",
+        highlights: [
+          "Coordinated technical support and infrastructure needs.",
+          "Improved tooling and documentation for volunteers.",
+          "Supported cross-team collaboration and data access.",
+        ],
+      },
     ],
-    links: [{ label: "GitHub", url: "https://github.com" }],
-    year: "2023",
-    role: "Lead Engineer",
-    duration: "6 months",
-    team: "5 engineers",
-  },
-  {
-    id: "incident-response-copilot",
-    title: "Incident Response Copilot",
-    subtitle: "Guided remediation workflows",
-    description: "Shortened time-to-mitigation by 31% with automated runbooks and context capture.",
-    overview:
-      "Created a workflow hub that collects telemetry, suggests runbooks, and documents actions during major incidents.",
-    problem:
-      "Incident knowledge was scattered across wikis and chat logs, slowing down remediation and postmortem quality.",
-    architecture:
-      "Service orchestrator with integrations into monitoring, ticketing, and knowledge systems plus a real-time audit log.",
-    implementation:
-      "Delivered templated runbooks, integrations for timeline capture, and post-incident reporting automation.",
-    challenges:
-      "Maintaining reliability under peak incident load while rolling out incremental integrations.",
-    results:
-      "Cut time-to-mitigation by 31%, improved postmortem completion rates to 96%, and increased on-call confidence.",
-    techStack: ["React", "Node", "GCP", "PostgreSQL"],
-    category: "RELIABILITY",
-    metrics: [
-      { label: "TTM", value: "-31%" },
-      { label: "Runbooks", value: "48" },
-      { label: "Postmortems", value: "96%" },
-      { label: "Teams", value: "9" },
+    principles: [
+      {
+        title: "Automate the repetitive",
+        description:
+          "Build workflows that remove manual steps and keep systems consistent and reliable.",
+      },
+      {
+        title: "Architect for scale",
+        description:
+          "Design cloud platforms that support growth across teams and data volumes.",
+      },
+      {
+        title: "Keep data trustworthy",
+        description:
+          "Focus on data quality, governance, and performance to enable confident decisions.",
+      },
+      {
+        title: "Ship with clarity",
+        description:
+          "Prefer clean interfaces and documentation that help teams move quickly.",
+      },
     ],
-    links: [{ label: "GitHub", url: "https://github.com" }],
-    year: "2022",
-    role: "Senior Engineer",
-    duration: "5 months",
-    team: "4 engineers",
-  },
-];
-
-export const experiences = [
-  {
-    company: "Company",
-    role: "Role",
-    period: "2021 ? 2024",
-    description:
-      "Led platform initiatives focused on reliability, cost optimization, and observability for high-traffic services.",
-    highlights: [
-      "Built a multi-region telemetry pipeline to unify logs, metrics, and traces.",
-      "Introduced FinOps automation that reduced spend while improving accountability.",
-      "Mentored senior engineers and established design review standards.",
+    techStack: [
+      {
+        category: "Languages",
+        items: ["Python", "JavaScript", "TypeScript", "Java", "C/C++", "C#"],
+      },
+      {
+        category: "Infrastructure",
+        items: ["GCP", "AWS", "Azure", "Docker", "Kubernetes", "CI/CD"],
+      },
+      {
+        category: "Data",
+        items: ["SAP HANA", "Firebase", "MongoDB", "Supabase", "SQLite", "SQL"],
+      },
+      {
+        category: "Tooling",
+        items: ["Git", "GitHub", "GitLab", "Azure DevOps", "VS Code", "PyCharm"],
+      },
     ],
   },
-  {
-    company: "Company",
-    role: "Role",
-    period: "2018 ? 2021",
-    description:
-      "Delivered internal tooling and developer experience improvements across CI/CD and infrastructure provisioning.",
-    highlights: [
-      "Created self-service deployment workflows that cut release time in half.",
-      "Standardized infrastructure templates and automated security checks.",
-      "Partnered with product teams to align platform roadmaps with business goals.",
+  he: {
+    title: "מהנדסת תוכנה",
+    location: "ישראל",
+    headline: "מהנדסת תוכנה המתמקדת בתשתיות ענן, אוטומציה ופיתוח פול-סטאק.",
+    subheadline:
+      "בונה פלטפורמות דאטה וכלים ארגוניים על גבי GCP ו-SAP, לצד פיתוח מוצרי מחקר מבוססי React ופייתון.",
+    nav: {
+      work: "עבודות",
+      about: "אודות",
+      contact: "יצירת קשר",
+      resume: "קורות חיים",
+      theme: "ערכת נושא",
+      language: "שפה",
+    },
+    hero: {
+      primaryCta: "לצפייה בעבודות",
+      secondaryCta: "GitHub",
+      scroll: "גלילה",
+    },
+    sections: {
+      selectedWork: "נבחרות",
+      projects: "פרויקטים",
+      howIWork: "איך אני עובדת",
+      principles: "עקרונות הנדסיים",
+      tools: "כלים וטכנולוגיות",
+      techStack: "סטאק טכנולוגי",
+      career: "קריירה",
+      experience: "ניסיון",
+      about: "אודות",
+    },
+    about: {
+      paragraphs: [
+        "מהנדסת תוכנה המתמחה בתשתיות ענן, אוטומציה ופיתוח מערכות עתירות דאטה.",
+        "ברשות האוכלוסין וההגירה אני מובילה ארכיטקטורת GCP ו-SAP, בונה אוטומציות Serverless ומפתחת פלטפורמות ווב פנימיות שמנגישות נתונים בצורה אמינה.",
+        "כפרילנסרית אני מפתחת מוצרים למחקר וקהילה עם React, Django ו-Firebase, תוך דגש על UX נקי, אבטחה ותחזוקתיות.",
+      ],
+    },
+    caseStudy: {
+      back: "חזרה לפרויקטים",
+      notFoundTitle: "הפרויקט לא נמצא",
+      notFoundBody: "המקרה שביקשת לא קיים.",
+      overview: "סקירה",
+      problem: "אתגר",
+      architecture: "ארכיטקטורה",
+      implementation: "מימוש",
+      challenges: "אתגרים",
+      results: "תוצאות",
+      role: "תפקיד",
+      year: "שנה",
+      duration: "משך",
+      team: "צוות",
+    },
+    notFound: {
+      title: "404",
+      body: "העמוד המבוקש לא קיים.",
+      back: "חזרה לדף הבית",
+    },
+    projects: [
+      {
+        id: "gcp-data-infrastructure",
+        title: "תשתית דאטה ב-GCP",
+        subtitle: "תכנון פלטפורמת דאטה עננית",
+        description:
+          "תכננתי תשתית דאטה מבוססת GCP עם צינורות אוטומטיים ושירותי Serverless לצוותים מרובים.",
+        overview:
+          "הובלתי מחקר ופיתוח ארכיטקטורה לפלטפורמת דאטה המשלבת שירותי GCP עם SAP, עבור קליטה, עיבוד וניהול נתונים אמין.",
+        problem:
+          "צוותים רבים נזקקו לצינורות נתונים עקביים, אוטומטיים וסביבות מבוקרות תוך שמירה על איכות נתונים ובקרה.",
+        architecture:
+          "ארכיטקטורת Serverless עם Cloud Run ו-Cloud Functions, ניהול ב-Python וחיבור ל-SAP HANA.",
+        implementation:
+          "בניית אוטומציות לצינורות עיבוד, ניהול סביבות ואינטגרציות API עם Azure DevOps.",
+        challenges:
+          "תיאום בין בעלי עניין רבים תוך עמידה בדרישות אבטחה ואיכות נתונים.",
+        results:
+          "הסטנדרטיזציה של זרימות נתונים והפחתת עבודה ידנית באמצעות אוטומציה reusable.",
+        techStack: ["Python", "GCP", "SAP HANA", "Cloud Run"],
+        category: "פלטפורמת ענן",
+        metrics: [
+          { label: "צינורות", value: "8+" },
+          { label: "אינטגרציות", value: "4" },
+          { label: "צוותים", value: "3" },
+          { label: "סביבות", value: "3" },
+        ],
+        links: [{ label: "GitHub", url: "https://github.com" }],
+        year: "2024",
+        role: "מהנדסת תוכנה",
+        duration: "מתמשך",
+        team: "חוצה צוותים",
+      },
+      {
+        id: "remez-research-platform",
+        title: "פלטפורמת המחקר REMEZ",
+        subtitle: "מערכת ניתוח תגובות לתרופות",
+        description:
+          "פיתחתי פלטפורמת מחקר לניתוח תגובות לתרופות עם אימות משתמשים, ניהול שאילתות והמחשה.",
+        overview:
+          "פיתוח אפליקציית ווב מלאה למחקר קליני עם גישה מאובטחת, שאילתות מתועדות ותוצרים ברורים.",
+        problem:
+          "חוקרים נזקקו למערכת אחודה לחקר דאטה של תרופות ותגובות ללא סקריפטים נקודתיים.",
+        architecture:
+          "Front-end ב-React עם שירותי Django ו-FastAPI, שכבת נתונים מובנית והרשאות תפקידים.",
+        implementation:
+          "אימות משתמשים, ניהול שאילתות והמחשה אנליטית עם UI מהיר ונקי.",
+        challenges:
+          "איזון בין מורכבות חישובית לבין חוויית משתמש נגישה לחוקרים.",
+        results:
+          "אפשרה תהליכי מחקר חוזרים ושיפור שיתופי פעולה.",
+        techStack: ["React", "Django", "FastAPI", "PostgreSQL"],
+        category: "פול-סטאק",
+        metrics: [
+          { label: "מודולים", value: "4" },
+          { label: "אימות", value: "RBAC" },
+          { label: "שאילתות", value: "10+" },
+          { label: "המחשות", value: "ROR" },
+        ],
+        links: [{ label: "GitHub", url: "https://github.com" }],
+        year: "2024",
+        role: "מפתחת פרילנס",
+        duration: "מתמשך",
+        team: "עצמאית",
+      },
+      {
+        id: "internal-bi-portal",
+        title: "פורטל BI ארגוני",
+        subtitle: "מרכז אנליטיקה פנימי",
+        description:
+          "פיתוח פורטל BI פנימי שמרכז תהליכי דיווח ומשפר גישה לתובנות דאטה.",
+        overview:
+          "פיתוח פורטל עבור בעלי עניין ארגוניים לצפייה בדשבורדים והזמנת דוחות בממשק אחיד.",
+        problem:
+          "תהליכי אנליטיקה היו מפוזרים ודרשו תיאום ידני בין צוותים.",
+        architecture:
+          "לקוח React עם APIs ב-Node.js, חיבור ל-SAP HANA ואימות פנימי.",
+        implementation:
+          "עיצוב רכיבי UI ניתנים לשימוש חוזר, חוזי API ומודולי שאילתות.",
+        challenges:
+          "שמירה על עקביות ביצועים ועמידה בסטנדרטים ארגוניים.",
+        results:
+          "שיפור זמינות הדאטה והפחתת זמן לטיפול בבקשות דיווח.",
+        techStack: ["React", "Node.js", "REST APIs", "SAP HANA"],
+        category: "פלטפורמת דאטה",
+        metrics: [
+          { label: "דשבורדים", value: "6+" },
+          { label: "APIs", value: "5" },
+          { label: "סטים", value: "12" },
+          { label: "משתמשים", value: "4" },
+        ],
+        links: [{ label: "GitHub", url: "https://github.com" }],
+        year: "2024",
+        role: "מהנדסת תוכנה",
+        duration: "מתמשך",
+        team: "פנימי",
+      },
+    ],
+    experiences: [
+      {
+        company: "רשות האוכלוסין וההגירה",
+        role: "מהנדסת תוכנה",
+        period: "2024 — היום",
+        description:
+          "הובלת יוזמות תשתית דאטה בענן ב-GCP ו-SAP, אוטומציה, צינורות נתונים ופלטפורמות ווב פנימיות.",
+        highlights: [
+          "תכנון ארכיטקטורת Serverless עם Cloud Run ו-Cloud Functions.",
+          "אוטומציה של תהליכי דאטה ואינטגרציות API עם Azure DevOps.",
+          "כתיבת SQL ב-SAP HANA לשיפור איכות הנתונים והביצועים.",
+        ],
+      },
+      {
+        company: "פרילנס",
+        role: "מפתחת ווב",
+        period: "2024 — היום",
+        description:
+          "פיתוח מוצרי ווב למחקר ולקהילה עם React, Django ו-Firebase.",
+        highlights: [
+          "פיתוח REMEZ עם אימות משתמשים והמחשה אנליטית.",
+          "השקת אתר קהילתי עם ביצועים משופרים.",
+          "מימוש REST APIs ושמירת נתונים מאובטחת.",
+        ],
+      },
+      {
+        company: "להב\"ה (עמותה לבריאות הכליה)",
+        role: "מנהלת מחלקת מחשוב",
+        period: "2020 — היום",
+        description:
+          "התנדבות בניהול ושיפור מערכות טכנולוגיות בעמותה.",
+        highlights: [
+          "תיאום צרכים טכנולוגיים ותמיכה שוטפת.",
+          "שיפור כלים ותיעוד עבור מתנדבים.",
+          "חיזוק שיתופי פעולה בין צוותים.",
+        ],
+      },
+    ],
+    principles: [
+      {
+        title: "אוטומציה של החוזר",
+        description:
+          "לבנות תהליכים שמסירים עבודה ידנית ושומרים על עקביות.",
+      },
+      {
+        title: "ארכיטקטורה שמאפשרת סקייל",
+        description:
+          "תכנון פלטפורמות ענן שגדלות עם הצוותים והנתונים.",
+      },
+      {
+        title: "דאטה אמין",
+        description:
+          "מיקוד באיכות, בקרה וביצועים כדי לאפשר החלטות בטוחות.",
+      },
+      {
+        title: "בהירות בתוצרים",
+        description:
+          "UI ברור ותיעוד שמאפשרים תנועה מהירה.",
+      },
+    ],
+    techStack: [
+      {
+        category: "שפות",
+        items: ["Python", "JavaScript", "TypeScript", "Java", "C/C++", "C#"],
+      },
+      {
+        category: "תשתיות",
+        items: ["GCP", "AWS", "Azure", "Docker", "Kubernetes", "CI/CD"],
+      },
+      {
+        category: "דאטה",
+        items: ["SAP HANA", "Firebase", "MongoDB", "Supabase", "SQLite", "SQL"],
+      },
+      {
+        category: "כלי פיתוח",
+        items: ["Git", "GitHub", "GitLab", "Azure DevOps", "VS Code", "PyCharm"],
+      },
     ],
   },
-  {
-    company: "Company",
-    role: "Role",
-    period: "2015 ? 2018",
-    description:
-      "Built distributed systems for data processing and analytics in a fast-paced environment.",
-    highlights: [
-      "Scaled ingestion services to handle 10x traffic growth.",
-      "Implemented monitoring and alerting for mission-critical workflows.",
-      "Contributed to architecture reviews and incident response playbooks.",
-    ],
-  },
-];
-
-export const principles = [
-  {
-    title: "Design for operational clarity",
-    description:
-      "Make systems observable by default so teams can understand behavior and recover quickly.",
-  },
-  {
-    title: "Automate repeatable decisions",
-    description:
-      "Codify policies and guardrails to reduce manual toil and improve consistency.",
-  },
-  {
-    title: "Bias toward measurable outcomes",
-    description:
-      "Define success metrics early and iterate based on what improves reliability and velocity.",
-  },
-  {
-    title: "Build for the next engineer",
-    description:
-      "Create clear interfaces, documentation, and scalable patterns for long-term sustainability.",
-  },
-];
-
-export const techStack = [
-  { category: "Languages", items: ["JavaScript", "TypeScript", "Python", "Go"] },
-  { category: "Infrastructure", items: ["GCP", "AWS", "Kubernetes", "Terraform"] },
-  { category: "Data", items: ["PostgreSQL", "BigQuery", "Redis", "Kafka"] },
-  { category: "Tooling", items: ["GitHub Actions", "Grafana", "Datadog", "Jira"] },
-];
+};
