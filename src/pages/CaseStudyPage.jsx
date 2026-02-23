@@ -4,11 +4,14 @@ import { ArrowLeft, ExternalLink } from "lucide-react";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import Container from "../components/layout/Container";
-import { projects } from "../data/portfolioData";
+import { content } from "../data/portfolioData";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function CaseStudyPage() {
   const { id } = useParams();
-  const project = projects.find((item) => item.id === id);
+  const { lang } = useLanguage();
+  const labels = content[lang] || content.en;
+  const project = labels.projects.find((item) => item.id === id);
 
   if (!project) {
     return (
@@ -17,16 +20,18 @@ export default function CaseStudyPage() {
         <main className="pt-16">
           <section className="border-t border-border py-24">
             <Container className="text-center">
-              <h1 className="text-3xl font-bold text-foreground">Project not found</h1>
-                <p className="text-base text-muted-foreground mt-4">
-                  The case study you are looking for does not exist.
-                </p>
+              <h1 className="text-3xl font-bold text-foreground">
+                {labels.caseStudy.notFoundTitle}
+              </h1>
+              <p className="text-base text-muted-foreground mt-4">
+                {labels.caseStudy.notFoundBody}
+              </p>
               <Link
                 to="/#projects"
                 className="font-mono text-sm text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2 mt-6"
               >
                 <ArrowLeft className="h-4 w-4" />
-                Back to projects
+                {labels.caseStudy.back}
               </Link>
             </Container>
           </section>
@@ -47,7 +52,7 @@ export default function CaseStudyPage() {
               className="font-mono text-sm text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2"
             >
               <ArrowLeft className="h-4 w-4" />
-              Back to projects
+              {labels.caseStudy.back}
             </Link>
             <div className="mt-8 flex flex-col gap-12 lg:flex-row">
               <div className="flex-1">
@@ -63,7 +68,7 @@ export default function CaseStudyPage() {
                 <div className="mt-12 space-y-12">
                   <div>
                     <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-4">
-                      Overview
+                      {labels.caseStudy.overview}
                     </p>
                     <p className="text-base leading-relaxed text-foreground/80">
                       {project.overview}
@@ -71,7 +76,7 @@ export default function CaseStudyPage() {
                   </div>
                   <div>
                     <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-4">
-                      Problem
+                      {labels.caseStudy.problem}
                     </p>
                     <p className="text-base leading-relaxed text-foreground/80">
                       {project.problem}
@@ -79,7 +84,7 @@ export default function CaseStudyPage() {
                   </div>
                   <div>
                     <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-4">
-                      Architecture
+                      {labels.caseStudy.architecture}
                     </p>
                     <p className="text-base leading-relaxed text-foreground/80">
                       {project.architecture}
@@ -87,7 +92,7 @@ export default function CaseStudyPage() {
                   </div>
                   <div>
                     <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-4">
-                      Implementation
+                      {labels.caseStudy.implementation}
                     </p>
                     <p className="text-base leading-relaxed text-foreground/80">
                       {project.implementation}
@@ -95,7 +100,7 @@ export default function CaseStudyPage() {
                   </div>
                   <div>
                     <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-4">
-                      Challenges
+                      {labels.caseStudy.challenges}
                     </p>
                     <p className="text-base leading-relaxed text-foreground/80">
                       {project.challenges}
@@ -103,7 +108,7 @@ export default function CaseStudyPage() {
                   </div>
                   <div>
                     <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-4">
-                      Results
+                      {labels.caseStudy.results}
                     </p>
                     <p className="text-base leading-relaxed text-foreground/80">
                       {project.results}
@@ -116,25 +121,25 @@ export default function CaseStudyPage() {
                   <div className="space-y-4">
                     <div>
                       <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-                        Role
+                        {labels.caseStudy.role}
                       </p>
                       <p className="text-base text-foreground mt-2">{project.role}</p>
                     </div>
                     <div>
                       <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-                        Year
+                        {labels.caseStudy.year}
                       </p>
                       <p className="text-base text-foreground mt-2">{project.year}</p>
                     </div>
                     <div>
                       <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-                        Duration
+                        {labels.caseStudy.duration}
                       </p>
                       <p className="text-base text-foreground mt-2">{project.duration}</p>
                     </div>
                     <div>
                       <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-                        Team
+                        {labels.caseStudy.team}
                       </p>
                       <p className="text-base text-foreground mt-2">{project.team}</p>
                     </div>
