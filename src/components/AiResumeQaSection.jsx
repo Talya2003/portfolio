@@ -254,6 +254,12 @@ export default function AiResumeQaSection() {
                 rows="2"
                 value={question}
                 onChange={(event) => setQuestion(event.target.value)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" && !event.shiftKey) {
+                    event.preventDefault();
+                    ask(question);
+                  }
+                }}
                 placeholder={labels.ai.placeholders.question}
                 className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground"
               />
@@ -317,6 +323,12 @@ export default function AiResumeQaSection() {
                 rows="3"
                 value={question}
                 onChange={(event) => setQuestion(event.target.value)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" && !event.shiftKey) {
+                    event.preventDefault();
+                    ask(question);
+                  }
+                }}
                 placeholder={labels.ai.placeholders.question}
                 className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground"
               />
