@@ -4,6 +4,7 @@ import Footer from "../components/layout/Footer";
 import HeroSection from "../components/HeroSection";
 import ProjectsSection from "../components/ProjectsSection";
 import GitHubReposSection from "../components/GitHubReposSection";
+import AiResumeQaSection from "../components/AiResumeQaSection";
 import PrinciplesSection from "../components/PrinciplesSection";
 import TechStackSection from "../components/TechStackSection";
 import ExperienceTimeline from "../components/ExperienceTimeline";
@@ -17,6 +18,7 @@ export default function Index() {
         <HeroSection />
         <ProjectsSection />
         <GitHubReposSection />
+        <AiResumeQaSection />
         <PrinciplesSection />
         <TechStackSection />
         <ExperienceTimeline />
