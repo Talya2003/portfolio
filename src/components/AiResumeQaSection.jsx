@@ -73,6 +73,14 @@ export default function AiResumeQaSection() {
     }
   };
 
+  const clearChat = () => {
+    setMessages([]);
+    setTypingId(null);
+    setTypingPos(0);
+    setStatus("idle");
+    setErrorMessage("");
+  };
+
   useEffect(() => {
     if (!open) return;
     const container = chatScrollRef.current;
@@ -140,13 +148,22 @@ export default function AiResumeQaSection() {
               <Bot className="h-3.5 w-3.5" />
               <span>{labels.ai.title}</span>
             </div>
-            <button
-              type="button"
-              onClick={() => setOpen(false)}
-              className="rounded-md border border-border px-2 py-1 text-xs text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
-            >
-              {lang === "he" ? "סגור" : "Close"}
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={clearChat}
+                className="rounded-md border border-border px-2 py-1 text-xs text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
+              >
+                {labels.ai.actions.clear}
+              </button>
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                className="rounded-md border border-border px-2 py-1 text-xs text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
+              >
+                {lang === "he" ? "סגור" : "Close"}
+              </button>
+            </div>
           </div>
 
           <div className="p-4 space-y-4">
@@ -249,9 +266,9 @@ export default function AiResumeQaSection() {
 
           <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
             <div className="rounded-lg border border-border bg-card p-6 sm:p-8 space-y-6">
-            <div className="flex flex-wrap gap-3">
-              {labels.ai.suggestions.map((item) => (
-                <button
+              <div className="flex flex-wrap gap-3">
+                {labels.ai.suggestions.map((item) => (
+                  <button
                   key={item}
                   type="button"
                   onClick={() => {
@@ -263,9 +280,9 @@ export default function AiResumeQaSection() {
                   {item}
                 </button>
               ))}
-            </div>
+              </div>
 
-            <div className="space-y-2">
+              <div className="space-y-2">
               <label className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
                 {labels.ai.fields.question}
               </label>
@@ -278,14 +295,21 @@ export default function AiResumeQaSection() {
               />
             </div>
 
-            <button
-              type="button"
-              onClick={() => ask(question)}
-              className="inline-flex items-center gap-2 rounded-md bg-foreground px-5 py-2.5 font-mono text-sm font-medium text-background hover:opacity-80 transition-opacity"
-            >
-              {status === "loading" ? labels.ai.actions.thinking : labels.ai.actions.ask}
-              <Send className="h-3.5 w-3.5" />
-            </button>
+              <button
+                type="button"
+                onClick={() => ask(question)}
+                className="inline-flex items-center gap-2 rounded-md bg-foreground px-5 py-2.5 font-mono text-sm font-medium text-background hover:opacity-80 transition-opacity"
+              >
+                {status === "loading" ? labels.ai.actions.thinking : labels.ai.actions.ask}
+                <Send className="h-3.5 w-3.5" />
+              </button>
+              <button
+                type="button"
+                onClick={clearChat}
+                className="inline-flex items-center gap-2 rounded-md border border-border px-4 py-2 font-mono text-xs uppercase tracking-widest text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
+              >
+                {labels.ai.actions.clear}
+              </button>
 
             {status === "error" && (
               <p className="text-sm text-muted-foreground">

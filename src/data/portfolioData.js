@@ -53,6 +53,7 @@ export const content = {
       actions: {
         ask: "Ask AI",
         thinking: "Thinking...",
+        clear: "Clear chat",
       },
       suggestions: [
         "Summarize Talya's experience for a recruiter.",
@@ -422,6 +423,7 @@ export const content = {
       actions: {
         ask: "שאלי AI",
         thinking: "חושבת...",
+        clear: "ניקוי שיחה",
       },
       suggestions: [
         "סכמי את הניסיון של טליה למגייסת.",
