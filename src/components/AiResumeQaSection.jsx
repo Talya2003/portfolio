@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Sparkles, Send, Bot, User } from "lucide-react";
 import Container from "./layout/Container";
 import { content, siteConfig } from "../data/portfolioData";
@@ -15,6 +15,10 @@ export default function AiResumeQaSection() {
   const [status, setStatus] = useState("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const [open, setOpen] = useState(false);
+  const chatScrollRef = useRef(null);
+  const typingTimerRef = useRef(null);
+  const [typingId, setTypingId] = useState(null);
+  const [typingPos, setTypingPos] = useState(0);
 
   const context = useMemo(() => {
     const exp = labels.experiences
@@ -28,7 +32,11 @@ export default function AiResumeQaSection() {
     if (!text.trim()) return;
     setStatus("loading");
     setErrorMessage("");
-    setMessages((prev) => [...prev, { role: "user", content: text }]);
+    setMessages((prev) => [
+      ...prev,
+      { id: crypto.randomUUID(), role: "user", content: text },
+    ]);
+    setQuestion("");
 
     const prompt = `You are a hiring-focused assistant. Answer briefly in ${lang === "he" ? "Hebrew" : "English"} using the portfolio context only.\nContext: ${context}\nQuestion: ${text}\nAnswer:`;
 
@@ -54,13 +62,58 @@ export default function AiResumeQaSection() {
       const output = data?.choices?.[0]?.message?.content || "";
       const cleaned = output.replace(/<think>[\s\S]*?<\/think>/gi, "").trim();
       const finalAnswer = cleaned || output.trim();
-      setMessages((prev) => [...prev, { role: "assistant", content: finalAnswer }]);
+      const assistantId = crypto.randomUUID();
+      setMessages((prev) => [...prev, { id: assistantId, role: "assistant", content: finalAnswer }]);
+      setTypingId(assistantId);
+      setTypingPos(0);
       setStatus("success");
     } catch (error) {
       setErrorMessage(error?.message || "");
       setStatus("error");
     }
   };
+
+  useEffect(() => {
+    if (!open) return;
+    const container = chatScrollRef.current;
+    if (!container) return;
+    container.scrollTop = container.scrollHeight;
+  }, [messages, open]);
+
+  useEffect(() => {
+    if (!typingId) return;
+    const message = messages.find((msg) => msg.id === typingId);
+    if (!message) return;
+
+    if (typingTimerRef.current) {
+      clearInterval(typingTimerRef.current);
+    }
+
+    typingTimerRef.current = setInterval(() => {
+      setTypingPos((prev) => {
+        const next = prev + 2;
+        if (next >= message.content.length) {
+          clearInterval(typingTimerRef.current);
+          typingTimerRef.current = null;
+          setTypingId(null);
+          return message.content.length;
+        }
+        return next;
+      });
+
+      const container = chatScrollRef.current;
+      if (container) {
+        container.scrollTop = container.scrollHeight;
+      }
+    }, 20);
+
+    return () => {
+      if (typingTimerRef.current) {
+        clearInterval(typingTimerRef.current);
+        typingTimerRef.current = null;
+      }
+    };
+  }, [typingId, messages]);
 
   return (
     <>
@@ -101,9 +154,12 @@ export default function AiResumeQaSection() {
               {messages.length === 0 && (
                 <p className="text-muted-foreground">{labels.ai.emptyState}</p>
               )}
-              {messages.map((message, index) => (
+              {messages.map((message) => {
+                const isTyping = typingId === message.id && message.role === "assistant";
+                const text = isTyping ? message.content.slice(0, typingPos) : message.content;
+                return (
                 <div
-                  key={`${message.role}-${index}`}
+                  key={message.id}
                   className={`flex items-start gap-3 ${
                     message.role === "user" ? "justify-end" : "justify-start"
                   }`}
@@ -120,7 +176,7 @@ export default function AiResumeQaSection() {
                         : "bg-secondary text-foreground"
                     }`}
                   >
-                    {message.content}
+                    {text}
                   </div>
                   {message.role === "user" && (
                     <span className="mt-1 rounded-full border border-border p-1 text-muted-foreground">
@@ -128,7 +184,8 @@ export default function AiResumeQaSection() {
                     </span>
                   )}
                 </div>
-              ))}
+              );
+              })}
             </div>
 
             <div className="space-y-2">
@@ -229,7 +286,10 @@ export default function AiResumeQaSection() {
               <Bot className="h-3.5 w-3.5" />
               <span>{labels.ai.answerLabel}</span>
             </div>
-            <div className="rounded-md border border-border bg-background p-4 text-sm text-foreground min-h-[260px] max-h-[360px] overflow-y-auto space-y-4">
+            <div
+              ref={chatScrollRef}
+              className="rounded-md border border-border bg-background p-4 text-sm text-foreground min-h-[260px] max-h-[360px] overflow-y-auto space-y-4"
+            >
               {messages.length === 0 && (
                 <p className="text-muted-foreground">{labels.ai.emptyState}</p>
               )}
