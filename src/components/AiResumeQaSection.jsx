@@ -52,7 +52,7 @@ export default function AiResumeQaSection() {
       }
       const output = data?.choices?.[0]?.message?.content || "";
       const cleaned = output.replace(/<think>[\s\S]*?<\/think>/gi, "").trim();
-      setAnswer(cleaned);
+      setAnswer(cleaned || output.trim());
       setStatus("success");
     } catch (error) {
       setErrorMessage(error?.message || "");
