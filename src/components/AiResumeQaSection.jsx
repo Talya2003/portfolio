@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { Sparkles, Send, Bot, User } from "lucide-react";
+import { Sparkles, Send, Bot, User, Copy, Check } from "lucide-react";
 import Container from "./layout/Container";
 import { content, siteConfig } from "../data/portfolioData";
 import { useLanguage } from "../context/LanguageContext";
@@ -19,6 +19,7 @@ export default function AiResumeQaSection() {
   const typingTimerRef = useRef(null);
   const [typingId, setTypingId] = useState(null);
   const [typingPos, setTypingPos] = useState(0);
+  const [copiedId, setCopiedId] = useState(null);
 
   const context = useMemo(() => {
     const exp = labels.experiences
@@ -79,6 +80,16 @@ export default function AiResumeQaSection() {
     setTypingPos(0);
     setStatus("idle");
     setErrorMessage("");
+  };
+
+  const handleCopy = async (message) => {
+    try {
+      await navigator.clipboard.writeText(message.content);
+      setCopiedId(message.id);
+      setTimeout(() => setCopiedId(null), 1200);
+    } catch (error) {
+      setCopiedId(null);
+    }
   };
 
   useEffect(() => {
@@ -193,7 +204,23 @@ export default function AiResumeQaSection() {
                         : "bg-secondary text-foreground"
                     }`}
                   >
-                    {text}
+                    <div className="flex items-start justify-between gap-3">
+                      <span>{text}</span>
+                      {message.role === "assistant" && (
+                        <button
+                          type="button"
+                          onClick={() => handleCopy(message)}
+                          className="shrink-0 rounded-md border border-border p-1 text-muted-foreground hover:bg-background hover:text-foreground transition-colors"
+                          aria-label={labels.ai.actions.copy}
+                        >
+                          {copiedId === message.id ? (
+                            <Check className="h-3.5 w-3.5" />
+                          ) : (
+                            <Copy className="h-3.5 w-3.5" />
+                          )}
+                        </button>
+                      )}
+                    </div>
                   </div>
                   {message.role === "user" && (
                     <span className="mt-1 rounded-full border border-border p-1 text-muted-foreground">

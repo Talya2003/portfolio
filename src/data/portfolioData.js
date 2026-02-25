@@ -54,6 +54,7 @@ export const content = {
         ask: "Ask AI",
         thinking: "Thinking...",
         clear: "Clear chat",
+        copy: "Copy answer",
       },
       suggestions: [
         "Summarize Talya's experience for a recruiter.",
@@ -424,6 +425,7 @@ export const content = {
         ask: "שאלי AI",
         thinking: "חושבת...",
         clear: "ניקוי שיחה",
+        copy: "העתקת תשובה",
       },
       suggestions: [
         "סכמי את הניסיון של טליה למגייסת.",
