@@ -36,6 +36,10 @@ export const content = {
       experience: "Experience",
       about: "About",
     },
+    projectsFilter: {
+      label: "Filter",
+      all: "All",
+    },
     about: {
       paragraphs: [
         "I’m a software engineer specializing in cloud infrastructure, automation, and full-stack delivery for data-intensive systems.",
@@ -373,6 +377,10 @@ export const content = {
       career: "קריירה",
       experience: "ניסיון",
       about: "אודות",
+    },
+    projectsFilter: {
+      label: "סינון",
+      all: "הכול",
     },
     about: {
       paragraphs: [
