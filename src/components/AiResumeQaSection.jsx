@@ -29,17 +29,23 @@ export default function AiResumeQaSection() {
     return `Name: ${siteConfig.name}. Title: ${labels.title}. Location: ${labels.location}. Experience: ${exp}. Projects: ${projects}.`;
   }, [labels, siteConfig.name]);
 
+  const sanitizeInput = (value) => {
+    if (lang !== "en") return value;
+    return value.replace(/[\u0590-\u05FF]/g, "");
+  };
+
   const ask = async (text) => {
-    if (!text.trim()) return;
+    const sanitized = sanitizeInput(text);
+    if (!sanitized.trim()) return;
     setStatus("loading");
     setErrorMessage("");
     setMessages((prev) => [
       ...prev,
-      { id: crypto.randomUUID(), role: "user", content: text },
+      { id: crypto.randomUUID(), role: "user", content: sanitized },
     ]);
     setQuestion("");
 
-    const prompt = `You are a hiring-focused assistant. Answer briefly in ${lang === "he" ? "Hebrew" : "English"} using the portfolio context only.\nContext: ${context}\nQuestion: ${text}\nAnswer:`;
+    const prompt = `You are a hiring-focused assistant. Answer briefly in ${lang === "he" ? "Hebrew" : "English"} using the portfolio context only.\nContext: ${context}\nQuestion: ${sanitized}\nAnswer:`;
 
     try {
       const res = await fetch(PROXY_ENDPOINT, {
@@ -253,7 +259,7 @@ export default function AiResumeQaSection() {
               <textarea
                 rows="2"
                 value={question}
-                onChange={(event) => setQuestion(event.target.value)}
+                onChange={(event) => setQuestion(sanitizeInput(event.target.value))}
                 onKeyDown={(event) => {
                   if (event.key === "Enter" && !event.shiftKey) {
                     event.preventDefault();
@@ -322,7 +328,7 @@ export default function AiResumeQaSection() {
               <textarea
                 rows="3"
                 value={question}
-                onChange={(event) => setQuestion(event.target.value)}
+                onChange={(event) => setQuestion(sanitizeInput(event.target.value))}
                 onKeyDown={(event) => {
                   if (event.key === "Enter" && !event.shiftKey) {
                     event.preventDefault();
