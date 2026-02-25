@@ -40,6 +40,33 @@ export const content = {
       label: "Filter",
       all: "All",
     },
+    ai: {
+      label: "AI",
+      title: "Resume Q&A",
+      subtitle: "Ask about experience, projects, or fit. Answers are generated from this portfolio.",
+      fields: {
+        question: "Your question",
+      },
+      placeholders: {
+        question: "Ask about experience, cloud skills, or project impact...",
+      },
+      actions: {
+        ask: "Ask AI",
+        thinking: "Thinking...",
+      },
+      suggestions: [
+        "Summarize Talya's experience for a recruiter.",
+        "What cloud platforms has Talya worked with?",
+        "Which projects are most relevant to DevOps roles?",
+        "Highlight strengths for a full-stack position.",
+      ],
+      answerLabel: "Answer",
+      emptyState: "Your answer will appear here.",
+      feedback: {
+        noToken: "AI is disabled. Add HF_TOKEN to .env to enable.",
+        error: "Something went wrong. Please try again.",
+      },
+    },
     about: {
       paragraphs: [
         "I’m a software engineer specializing in cloud infrastructure, automation, and full-stack delivery for data-intensive systems.",
@@ -381,6 +408,33 @@ export const content = {
     projectsFilter: {
       label: "סינון",
       all: "הכול",
+    },
+    ai: {
+      label: "AI",
+      title: "שאלות ותשובות על קו\"ח",
+      subtitle: "שאלי על ניסיון, פרויקטים או התאמה. התשובות מבוססות על הפורטפוליו.",
+      fields: {
+        question: "השאלה שלך",
+      },
+      placeholders: {
+        question: "שאלי על ניסיון ענן, פרויקטים או התאמה לתפקיד...",
+      },
+      actions: {
+        ask: "שאלי AI",
+        thinking: "חושבת...",
+      },
+      suggestions: [
+        "סכמי את הניסיון של טליה למגייסת.",
+        "באילו פלטפורמות ענן טליה עבדה?",
+        "איזה פרויקטים רלוונטיים לתפקיד DevOps?",
+        "מה החוזקות לפול-סטאק?",
+      ],
+      answerLabel: "תשובה",
+      emptyState: "כאן תופיע התשובה.",
+      feedback: {
+        noToken: "AI לא פעיל. הוסיפי HF_TOKEN לקובץ .env כדי להפעיל.",
+        error: "משהו השתבש. נסי שוב.",
+      },
     },
     about: {
       paragraphs: [
