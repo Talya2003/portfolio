@@ -22,7 +22,7 @@ export default function AiResumeQaSection() {
 
   const context = useMemo(() => {
     const exp = labels.experiences
-      .map((item) => `${item.company}  ${item.role} (${item.period})`)
+      .map((item) => `${item.company} — ${item.role} (${item.period})`)
       .join("; ");
     const projects = labels.projects.map((item) => item.title).join(", ");
     return `Name: ${siteConfig.name}. Title: ${labels.title}. Location: ${labels.location}. Experience: ${exp}. Projects: ${projects}.`;
@@ -186,6 +186,20 @@ export default function AiResumeQaSection() {
                 </div>
               );
               })}
+              {status === "loading" && (
+                <div className="flex items-start gap-3 justify-start">
+                  <span className="mt-1 rounded-full border border-border p-1 text-muted-foreground">
+                    <Bot className="h-3.5 w-3.5" />
+                  </span>
+                  <div className="max-w-[80%] rounded-lg border border-border px-3 py-2 text-sm bg-secondary text-foreground">
+                    <span className="typing-dots" aria-label="Typing">
+                      <span className="typing-dot" />
+                      <span className="typing-dot" />
+                      <span className="typing-dot" />
+                    </span>
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="space-y-2">
@@ -321,6 +335,20 @@ export default function AiResumeQaSection() {
                   )}
                 </div>
               ))}
+              {status === "loading" && (
+                <div className="flex items-start gap-3 justify-start">
+                  <span className="mt-1 rounded-full border border-border p-1 text-muted-foreground">
+                    <Bot className="h-3.5 w-3.5" />
+                  </span>
+                  <div className="max-w-[80%] rounded-lg border border-border px-3 py-2 text-sm bg-secondary text-foreground">
+                    <span className="typing-dots" aria-label="Typing">
+                      <span className="typing-dot" />
+                      <span className="typing-dot" />
+                      <span className="typing-dot" />
+                    </span>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
