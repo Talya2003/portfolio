@@ -5,7 +5,7 @@ import { siteConfig, content } from "../data/portfolioData";
 import { useLanguage } from "../context/LanguageContext";
 
 const EMAILJS_SERVICE_ID = "service_8htaosb";
-const EMAILJS_TEMPLATE_ID = "template_wvw7t4k";
+const EMAILJS_TEMPLATE_ID = "template_ibrm554";
 const EMAILJS_PUBLIC_KEY = "E_Pko4Wfj6hbbWKIW";
 
 export default function ResumeRequestModal({ open, onClose }) {
