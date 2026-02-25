@@ -9,7 +9,7 @@ export const content = {
   en: {
     title: "Software Engineer",
     location: "Israel",
-    headline: "Software Engineer focused on cloud infrastructure, automation, and full-stack delivery.",
+    headline: "Software Engineer focused on cloud, automation, and full-stack delivery.",
     subheadline:
       "Building reliable data platforms and internal tools on GCP and SAP, while delivering research-driven web products with modern React and Python stacks.",
     nav: {
@@ -351,7 +351,7 @@ export const content = {
   he: {
     title: "מהנדסת תוכנה",
     location: "ישראל",
-    headline: "מהנדסת תוכנה המתמקדת בתשתיות ענן, אוטומציה ופיתוח פול-סטאק.",
+    headline: "מהנדסת תוכנה המתמקדת בענן, אוטומציה ופול-סטאק.",
     subheadline:
       "בונה פלטפורמות דאטה וכלים ארגוניים על גבי GCP ו-SAP, לצד פיתוח מוצרי מחקר מבוססי React ופייתון.",
     nav: {
