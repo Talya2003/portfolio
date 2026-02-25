@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { Sparkles, Send } from "lucide-react";
+import { Sparkles, Send, Bot, User } from "lucide-react";
 import Container from "./layout/Container";
 import { content, siteConfig } from "../data/portfolioData";
 import { useLanguage } from "../context/LanguageContext";
@@ -11,13 +11,14 @@ export default function AiResumeQaSection() {
   const { lang } = useLanguage();
   const labels = content[lang] || content.en;
   const [question, setQuestion] = useState("");
-  const [answer, setAnswer] = useState("");
+  const [messages, setMessages] = useState([]);
   const [status, setStatus] = useState("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [open, setOpen] = useState(false);
 
   const context = useMemo(() => {
     const exp = labels.experiences
-      .map((item) => `${item.company} ? ${item.role} (${item.period})`)
+      .map((item) => `${item.company}  ${item.role} (${item.period})`)
       .join("; ");
     const projects = labels.projects.map((item) => item.title).join(", ");
     return `Name: ${siteConfig.name}. Title: ${labels.title}. Location: ${labels.location}. Experience: ${exp}. Projects: ${projects}.`;
@@ -26,8 +27,8 @@ export default function AiResumeQaSection() {
   const ask = async (text) => {
     if (!text.trim()) return;
     setStatus("loading");
-    setAnswer("");
     setErrorMessage("");
+    setMessages((prev) => [...prev, { role: "user", content: text }]);
 
     const prompt = `You are a hiring-focused assistant. Answer briefly in ${lang === "he" ? "Hebrew" : "English"} using the portfolio context only.\nContext: ${context}\nQuestion: ${text}\nAnswer:`;
 
@@ -52,7 +53,8 @@ export default function AiResumeQaSection() {
       }
       const output = data?.choices?.[0]?.message?.content || "";
       const cleaned = output.replace(/<think>[\s\S]*?<\/think>/gi, "").trim();
-      setAnswer(cleaned || output.trim());
+      const finalAnswer = cleaned || output.trim();
+      setMessages((prev) => [...prev, { role: "assistant", content: finalAnswer }]);
       setStatus("success");
     } catch (error) {
       setErrorMessage(error?.message || "");
@@ -61,21 +63,121 @@ export default function AiResumeQaSection() {
   };
 
   return (
-    <section className="border-t border-border py-24">
-      <Container>
-        <div className="mb-12">
-          <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-muted-foreground">
-            <Sparkles className="h-3.5 w-3.5" />
-            <span>{labels.ai.label}</span>
-          </div>
-          <h2 className="text-4xl font-bold text-foreground mt-3">{labels.ai.title}</h2>
-          <p className="text-base text-muted-foreground mt-4 max-w-2xl">
-            {labels.ai.subtitle}
-          </p>
-        </div>
+    <>
+      <button
+        type="button"
+        onClick={() => setOpen((prev) => !prev)}
+        className={`fixed bottom-6 z-[70] inline-flex items-center gap-2 rounded-full border border-border bg-foreground px-4 py-3 text-xs font-mono uppercase tracking-widest text-background shadow-lg hover:opacity-90 transition-opacity ${
+          lang === "he" ? "left-6" : "right-6"
+        }`}
+        aria-label={labels.ai.title}
+      >
+        <Bot className="h-4 w-4" />
+        {labels.ai.label}
+      </button>
 
-        <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="rounded-lg border border-border bg-card p-6 sm:p-8 space-y-6">
+      {open && (
+        <div
+          className={`fixed bottom-24 z-[70] w-[90vw] max-w-md rounded-lg border border-border bg-card shadow-2xl ${
+            lang === "he" ? "left-6" : "right-6"
+          }`}
+        >
+          <div className="flex items-center justify-between border-b border-border px-4 py-3">
+            <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-muted-foreground">
+              <Bot className="h-3.5 w-3.5" />
+              <span>{labels.ai.title}</span>
+            </div>
+            <button
+              type="button"
+              onClick={() => setOpen(false)}
+              className="rounded-md border border-border px-2 py-1 text-xs text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
+            >
+              {lang === "he" ? "סגור" : "Close"}
+            </button>
+          </div>
+
+          <div className="p-4 space-y-4">
+            <div className="rounded-md border border-border bg-background p-4 text-sm text-foreground min-h-[220px] max-h-[320px] overflow-y-auto space-y-4">
+              {messages.length === 0 && (
+                <p className="text-muted-foreground">{labels.ai.emptyState}</p>
+              )}
+              {messages.map((message, index) => (
+                <div
+                  key={`${message.role}-${index}`}
+                  className={`flex items-start gap-3 ${
+                    message.role === "user" ? "justify-end" : "justify-start"
+                  }`}
+                >
+                  {message.role === "assistant" && (
+                    <span className="mt-1 rounded-full border border-border p-1 text-muted-foreground">
+                      <Bot className="h-3.5 w-3.5" />
+                    </span>
+                  )}
+                  <div
+                    className={`max-w-[80%] rounded-lg border border-border px-3 py-2 text-sm whitespace-pre-wrap ${
+                      message.role === "user"
+                        ? "bg-foreground text-background"
+                        : "bg-secondary text-foreground"
+                    }`}
+                  >
+                    {message.content}
+                  </div>
+                  {message.role === "user" && (
+                    <span className="mt-1 rounded-full border border-border p-1 text-muted-foreground">
+                      <User className="h-3.5 w-3.5" />
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            <div className="space-y-2">
+              <label className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+                {labels.ai.fields.question}
+              </label>
+              <textarea
+                rows="2"
+                value={question}
+                onChange={(event) => setQuestion(event.target.value)}
+                placeholder={labels.ai.placeholders.question}
+                className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground"
+              />
+            </div>
+
+            <button
+              type="button"
+              onClick={() => ask(question)}
+              className="inline-flex items-center gap-2 rounded-md bg-foreground px-4 py-2 font-mono text-xs uppercase tracking-widest text-background hover:opacity-80 transition-opacity"
+            >
+              {status === "loading" ? labels.ai.actions.thinking : labels.ai.actions.ask}
+              <Send className="h-3.5 w-3.5" />
+            </button>
+
+            {status === "error" && (
+              <p className="text-sm text-muted-foreground">
+                {labels.ai.feedback.error}
+                {errorMessage ? ` (${errorMessage})` : ""}
+              </p>
+            )}
+          </div>
+        </div>
+      )}
+
+      <section className="border-t border-border py-24">
+        <Container>
+          <div className="mb-12">
+            <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-muted-foreground">
+              <Sparkles className="h-3.5 w-3.5" />
+              <span>{labels.ai.label}</span>
+            </div>
+            <h2 className="text-4xl font-bold text-foreground mt-3">{labels.ai.title}</h2>
+            <p className="text-base text-muted-foreground mt-4 max-w-2xl">
+              {labels.ai.subtitle}
+            </p>
+          </div>
+
+          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+            <div className="rounded-lg border border-border bg-card p-6 sm:p-8 space-y-6">
             <div className="flex flex-wrap gap-3">
               {labels.ai.suggestions.map((item) => (
                 <button
@@ -123,15 +225,47 @@ export default function AiResumeQaSection() {
           </div>
 
           <div className="rounded-lg border border-border bg-card p-6 sm:p-8 space-y-4">
-            <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-              {labels.ai.answerLabel}
-            </p>
-            <div className="rounded-md border border-border bg-background px-4 py-4 text-sm text-foreground min-h-[160px] whitespace-pre-wrap">
-              {answer || labels.ai.emptyState}
+            <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-muted-foreground">
+              <Bot className="h-3.5 w-3.5" />
+              <span>{labels.ai.answerLabel}</span>
+            </div>
+            <div className="rounded-md border border-border bg-background p-4 text-sm text-foreground min-h-[260px] max-h-[360px] overflow-y-auto space-y-4">
+              {messages.length === 0 && (
+                <p className="text-muted-foreground">{labels.ai.emptyState}</p>
+              )}
+              {messages.map((message, index) => (
+                <div
+                  key={`${message.role}-${index}`}
+                  className={`flex items-start gap-3 ${
+                    message.role === "user" ? "justify-end" : "justify-start"
+                  }`}
+                >
+                  {message.role === "assistant" && (
+                    <span className="mt-1 rounded-full border border-border p-1 text-muted-foreground">
+                      <Bot className="h-3.5 w-3.5" />
+                    </span>
+                  )}
+                  <div
+                    className={`max-w-[80%] rounded-lg border border-border px-3 py-2 text-sm whitespace-pre-wrap ${
+                      message.role === "user"
+                        ? "bg-foreground text-background"
+                        : "bg-secondary text-foreground"
+                    }`}
+                  >
+                    {message.content}
+                  </div>
+                  {message.role === "user" && (
+                    <span className="mt-1 rounded-full border border-border p-1 text-muted-foreground">
+                      <User className="h-3.5 w-3.5" />
+                    </span>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </Container>
     </section>
+    </>
   );
 }
