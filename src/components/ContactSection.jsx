@@ -41,6 +41,8 @@ export default function ContactSection() {
       company: isRecruiter ? form.company : "-",
       role: isRecruiter ? form.role : "-",
       timeline: isRecruiter ? form.timeline : "-",
+      linkedin: "-",
+      reason: "-",
       source: window.location.href,
     };
 
