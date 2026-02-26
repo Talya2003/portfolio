@@ -1,4 +1,4 @@
-# <PLACEHOLDER_NAME> Portfolio
+# Talya Kazayof Portfolio
 
 Production-grade software engineer portfolio built with React, Vite, and Tailwind CSS.
 
