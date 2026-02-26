@@ -1,4 +1,4 @@
-# <PLACEHOLDER_NAME> ? Portfolio
+# <PLACEHOLDER_NAME> Portfolio
 
 Production-grade software engineer portfolio built with React, Vite, and Tailwind CSS.
 

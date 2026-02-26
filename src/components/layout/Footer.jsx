@@ -48,7 +48,7 @@ export default function Footer() {
         </div>
         <div className="mt-12 border-t border-border pt-8">
           <p className="font-mono text-xs text-muted-foreground">
-            ? {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
+            {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
           </p>
         </div>
       </Container>

@@ -43,7 +43,7 @@ export default function ExperienceTimeline() {
                   {experience.company}
                 </h3>
                 <p className="font-mono text-xs text-muted-foreground">
-                  {experience.role} ? {experience.period}
+                  {experience.role} | {experience.period}
                 </p>
               </div>
               <p className="text-base text-muted-foreground mt-2">

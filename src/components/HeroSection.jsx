@@ -21,7 +21,7 @@ export default function HeroSection() {
             className="max-w-3xl"
           >
             <p className="font-mono text-base text-muted-foreground mb-6">
-              {labels.title} ? {labels.location}
+              {labels.title} | {labels.location}
             </p>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-foreground mb-6">
               {labels.headline}
