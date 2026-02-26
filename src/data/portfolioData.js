@@ -361,7 +361,7 @@ export const content = {
     techStack: [
       {
         category: "Languages",
-        items: ["Python", "JavaScript", "TypeScript", "Java", "C/C++", "C#"],
+        items: ["Python", "JavaScript", "TypeScript", "Java", "C/C++", "C#", "HTML", "CSS"],
       },
       {
         category: "Infrastructure",
@@ -369,7 +369,7 @@ export const content = {
       },
       {
         category: "Data",
-        items: ["SAP HANA", "Firebase", "MongoDB", "Supabase", "SQLite", "SQL"],
+        items: ["SAP HANA", "Firebase", "MongoDB", "Supabase", "SQLite", "SQL server", "Oracle", "SQL"],
       },
       {
         category: "Tooling",
