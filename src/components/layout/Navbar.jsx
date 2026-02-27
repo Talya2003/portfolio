@@ -14,9 +14,10 @@ export default function Navbar() {
 
   const brand = useMemo(() => {
     return siteConfig.name
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, ".")
-      .replace(/^\.|\.$/g, "");
+      .split(/[^a-zA-Z0-9]+/)
+      .filter(Boolean)
+      .map((part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
+      .join(".");
   }, []);
 
   const labels = content[lang] || content.en;
