@@ -6,12 +6,12 @@ Production-grade personal portfolio built with React, Vite, and Tailwind CSS.
 
 This repository contains Talya Kazayof's public portfolio website with:
 
-- Bilingual UX (English/Hebrew) with RTL support.
-- Dark/light theme toggle with persistence.
-- Case-study project pages with structured engineering write-ups.
-- Recruiter-focused contact form and resume request flow.
-- AI Resume Q&A assistant (Hugging Face via secured proxy route).
-- SEO metadata, Open Graph image, and custom favicon.
+- Bilingual UX (English/Hebrew) with RTL support
+- Dark/light theme toggle with persistence
+- Case-study project pages with structured engineering write-ups
+- Recruiter-focused contact form and resume request flow
+- AI Resume Q&A assistant (Hugging Face via secured proxy route)
+- SEO metadata, Open Graph image, and custom favicon
 
 ## Live Architecture
 
@@ -25,13 +25,13 @@ This repository contains Talya Kazayof's public portfolio website with:
 
 ## Key Features
 
-- `Hero` section with animated technical background and profile image.
-- `Projects` section with category filter and dedicated `/project/:id` pages.
-- `GitHub Repositories` section for public activity snapshot.
-- `AI Resume Q&A` as both full section and floating chat widget.
-- `Contact` form with optional recruiter mode fields.
-- `Resume Request` modal with anti-bot honeypot field.
-- Smooth hash navigation (`/#projects`, `/#contact`).
+- Hero section with animated technical background and profile image
+- Projects section with category filter and dedicated `/project/:id` pages
+- GitHub repositories section for public activity snapshot
+- AI Resume Q&A as both full section and floating chat widget
+- Contact form with optional recruiter mode fields
+- Resume request modal with anti-bot honeypot field
+- Smooth hash navigation (`/#projects`, `/#contact`)
 
 ## Tech Stack
 
@@ -47,35 +47,38 @@ This repository contains Talya Kazayof's public portfolio website with:
 
 ```text
 .
-├─ api/
-│  └─ hf.js                     # Serverless HF proxy (Vercel)
-├─ public/
-│  ├─ favicon.svg
-│  └─ og-image.svg
-├─ src/
-│  ├─ components/
-│  ├─ context/
-│  ├─ data/
-│  │  └─ portfolioData.js       # Main content source (EN/HE)
-│  ├─ pages/
-│  ├─ App.jsx
-│  ├─ index.css
-│  └─ main.jsx
-├─ index.html
-├─ vite.config.js
-└─ README.md
+|- api/
+|  |- hf.js                     # Serverless HF proxy (Vercel)
+|- public/
+|  |- favicon.svg
+|  |- og-image.svg
+|- src/
+|  |- components/
+|  |- context/
+|  |- data/
+|  |  |- portfolioData.js       # Main content source (EN/HE)
+|  |- pages/
+|  |- App.jsx
+|  |- index.css
+|  |- main.jsx
+|- index.html
+|- vite.config.js
+|- WIKI.md
+|- TERMS_OF_USE.md
+|- LICENSE
+`- README.md
 ```
 
 ## Documentation
 
 - `README.md`: setup and deployment overview
 - `WIKI.md`: detailed operational and maintenance guide
+- `TERMS_OF_USE.md`: website usage restrictions
+- `LICENSE`: copyright and no-reuse terms
 
 ## Content Management
 
-Primary content is managed from:
-
-- `src/data/portfolioData.js`
+Primary content is managed from `src/data/portfolioData.js`.
 
 Update there for:
 
@@ -108,9 +111,9 @@ HF_TOKEN=your_huggingface_token
 
 Notes:
 
-- `HF_TOKEN` is required for AI chat through `/api/hf`.
-- In local development, Vite proxy injects this token server-side.
-- In production (Vercel), set the same `HF_TOKEN` in project Environment Variables.
+- `HF_TOKEN` is required for AI chat through `/api/hf`
+- In local development, Vite proxy injects this token server-side
+- In production (Vercel), set the same `HF_TOKEN` in project Environment Variables
 
 ## EmailJS Setup
 
@@ -128,15 +131,12 @@ Required EmailJS assets:
 
 ## Deployment (Vercel)
 
-1. Push repository to GitHub.
-2. Import project into Vercel.
-3. Add environment variable:
-   - `HF_TOKEN`
-4. Deploy.
+1. Push repository to GitHub
+2. Import project into Vercel
+3. Add environment variable `HF_TOKEN`
+4. Deploy
 
-Vercel serverless route used for AI calls:
-
-- `api/hf.js`
+Vercel serverless route used for AI calls: `api/hf.js`
 
 ## SEO Assets
 
@@ -148,17 +148,20 @@ Managed in:
 
 ## Troubleshooting
 
-- `403` from `/api/hf`: token lacks Inference Provider permission.
-- `404` from `/api/hf`: route not deployed or incorrect path.
-- `410` from old HF endpoint: ensure router endpoint is used.
-- Contact/resume email not delivered: validate EmailJS service/template IDs.
+- `403` from `/api/hf`: token lacks Inference Provider permission
+- `404` from `/api/hf`: route not deployed or incorrect path
+- `410` from old HF endpoint: ensure router endpoint is used
+- Contact/resume email not delivered: validate EmailJS service/template IDs
 
 ## Quality Notes
 
-- Theme and language are persisted in `localStorage`.
-- Color usage is token-based (`bg-background`, `text-foreground`, etc.).
-- App layout supports both desktop and mobile.
+- Theme and language are persisted in `localStorage`
+- Color usage is token-based (`bg-background`, `text-foreground`, etc.)
+- App layout supports desktop and mobile
 
 ## License
 
-MIT
+This project is proprietary and protected by copyright.
+
+- No copying, redistribution, resale, or reuse is allowed without prior written permission.
+- See `LICENSE` and `TERMS_OF_USE.md` for full terms.
